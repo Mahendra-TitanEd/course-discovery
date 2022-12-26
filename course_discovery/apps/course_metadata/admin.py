@@ -303,7 +303,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'credit_backing_organizations', 'one_click_purchase_enabled', 'hidden', 'corporate_endorsements', 'faq',
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items', 'instructor_ordering',
         'enrollment_count', 'recent_enrollment_count', 'credit_value', 'subject', 'topic', 'level', 'language', 'start_date',
-        'end_date', 'enrollment_start', 'assignment_due', 'certificte_overview', 'live_class_overview', 'ebooks_overview',
+        'end_date', 'enrollment_start', 'assignment_due', 'overview_2', 'ebooks_overview', 'certificte_overview',
         'placement_overview', 'is_new', 'price', 'price_text', 'product_id',
     )
 
