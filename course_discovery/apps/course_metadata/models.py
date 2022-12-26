@@ -2295,6 +2295,14 @@ class Program(PkSearchableMixin, TimeStampedModel):
     end_date = models.DateTimeField(null=True, blank=True, db_index=True)
     enrollment_start = models.DateTimeField(null=True, blank=True)
     assignment_due = models.DateTimeField(null=True, blank=True, db_index=True)
+    certificte_overview = HtmlField(_("Program Certificate Overview"), null=True,blank=False)
+    live_class_overview = HtmlField(_("Demo Live Classes Overview"), null=True,blank=False)
+    ebooks_overview = HtmlField(_("E-Books from EBC Reader Overview"), null=True,blank=False)
+    placement_overview = HtmlField(_("INTERNSHIP & PLACEMENT PARTNERS Overview"), null=True,blank=False)
+    is_new = models.BooleanField(default=True)
+    price = models.PositiveIntegerField(default=0)
+    price_text = models.CharField(max_length=255, null=True, blank=True)
+    product_id = models.CharField(max_length=255, null=True, blank=True)
 
     objects = ProgramQuerySet.as_manager()
 
