@@ -1801,10 +1801,7 @@ class ProgramSerializer(MinimalProgramSerializer):
     end_date = serializers.DateTimeField(format='%d %B %Y')
     enrollment_start = serializers.DateTimeField(format='%d %B %Y')
     assignment_due = serializers.DateTimeField(format='%d %B %Y')
-    certificte_overview = HtmlField(required=False, allow_blank=True)
-    live_class_overview = HtmlField(required=False, allow_blank=True)
-    ebooks_overview = HtmlField(required=False, allow_blank=True)
-    placement_overview = HtmlField(required=False, allow_blank=True)
+
 
     @classmethod
     def prefetch_queryset(cls, partner, queryset=None):
@@ -1868,7 +1865,7 @@ class ProgramSerializer(MinimalProgramSerializer):
             'individual_endorsements', 'languages', 'transcript_languages', 'subjects', 'price_ranges',
             'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering',
             'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 'end_date', 'enrollment_start',
-            'assignment_due', 'certificte_overview', 'live_class_overview', 'ebooks_overview', 'placement_overview',
+            'assignment_due', 'certificte_overview', 'overview_2', 'ebooks_overview', 'placement_overview',
             'is_new', 'price', 'price_text', 'product_id',
         )
 
