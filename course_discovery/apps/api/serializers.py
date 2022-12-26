@@ -1772,6 +1772,13 @@ class MinimalExtendedProgramSerializer(MinimalProgramSerializer):
         model = Program
         fields = MinimalProgramSerializer.Meta.fields + ('expected_learning_items', 'price_ranges')
 
+class ProgramSubjectSerializer(BaseModelSerializer):
+    """Serializer for the ``Subject`` model."""
+
+    class Meta:
+        model = Subject
+        fields = ('name', 'subtitle', 'description', 'banner_image_url', 'card_image_url', 'slug', 'uuid')
+
 
 class ProgramSerializer(MinimalProgramSerializer):
     authoring_organizations = OrganizationSerializer(many=True)
@@ -1790,7 +1797,7 @@ class ProgramSerializer(MinimalProgramSerializer):
         many=True, read_only=True, slug_field='code',
         help_text=_('Languages that course runs in this program have available transcripts in.'),
     )
-    subjects = SubjectSerializer(many=True)
+    subject = ProgramSubjectSerializer()
     staff = MinimalPersonSerializer(many=True)
     instructor_ordering = MinimalPersonSerializer(many=True)
     applicable_seat_types = serializers.SerializerMethodField()
@@ -1807,7 +1814,7 @@ class ProgramSerializer(MinimalProgramSerializer):
         """
         queryset = queryset if queryset is not None else Program.objects.filter(partner=partner)
 
-        return queryset.select_related('type', 'video', 'partner').prefetch_related(
+        return queryset.select_related('type', 'video', 'subject', 'partner').prefetch_related(
             'excluded_course_runs',
             'expected_learning_items',
             'faq',
@@ -1838,7 +1845,7 @@ class ProgramSerializer(MinimalProgramSerializer):
             'overview', 'weeks_to_complete', 'weeks_to_complete_min', 'weeks_to_complete_max',
             'min_hours_effort_per_week', 'max_hours_effort_per_week', 'video', 'expected_learning_items',
             'faq', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
-            'individual_endorsements', 'languages', 'transcript_languages', 'subjects', 'price_ranges',
+            'individual_endorsements', 'languages', 'transcript_languages', 'subject', 'price_ranges',
             'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering',
             'enrollment_count', 'topics', 'credit_value',
         )
