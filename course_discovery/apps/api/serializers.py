@@ -1772,13 +1772,6 @@ class MinimalExtendedProgramSerializer(MinimalProgramSerializer):
         model = Program
         fields = MinimalProgramSerializer.Meta.fields + ('expected_learning_items', 'price_ranges')
 
-class ProgramSubjectSerializer(BaseModelSerializer):
-    """Serializer for the ``Subject`` model."""
-
-    class Meta:
-        model = Subject
-        fields = ('name', 'subtitle', 'description', 'banner_image_url', 'card_image_url', 'slug', 'uuid')
-
 
 class ProgramSerializer(MinimalProgramSerializer):
     authoring_organizations = OrganizationSerializer(many=True)
@@ -1789,19 +1782,21 @@ class ProgramSerializer(MinimalProgramSerializer):
     corporate_endorsements = CorporateEndorsementSerializer(many=True)
     job_outlook_items = serializers.SlugRelatedField(many=True, read_only=True, slug_field='value')
     individual_endorsements = EndorsementSerializer(many=True)
-    languages = serializers.SlugRelatedField(
-        many=True, read_only=True, slug_field='code',
-        help_text=_('Languages that course runs in this program are offered in.'),
-    )
+    # languages = serializers.SlugRelatedField(
+    #     many=True, read_only=True, slug_field='code',
+    #     help_text=_('Languages that course runs in this program are offered in.'),
+    # )
     transcript_languages = serializers.SlugRelatedField(
         many=True, read_only=True, slug_field='code',
         help_text=_('Languages that course runs in this program have available transcripts in.'),
     )
-    subject = ProgramSubjectSerializer()
+    subjects = serializers.SerializerMethodField()
     staff = MinimalPersonSerializer(many=True)
     instructor_ordering = MinimalPersonSerializer(many=True)
     applicable_seat_types = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
+    level = serializers.SerializerMethodField()
+    languages = serializers.SerializerMethodField()
 
     @classmethod
     def prefetch_queryset(cls, partner, queryset=None):
@@ -1814,7 +1809,7 @@ class ProgramSerializer(MinimalProgramSerializer):
         """
         queryset = queryset if queryset is not None else Program.objects.filter(partner=partner)
 
-        return queryset.select_related('type', 'video', 'subject', 'partner').prefetch_related(
+        return queryset.select_related('type', 'video', 'partner').prefetch_related(
             'excluded_course_runs',
             'expected_learning_items',
             'faq',
@@ -1837,7 +1832,24 @@ class ProgramSerializer(MinimalProgramSerializer):
         return list(obj.type.applicable_seat_types.values_list('slug', flat=True))
 
     def get_topics(self, obj):
-        return [topic.name for topic in obj.topics]
+        if obj.topic:
+            return obj.topic.name
+        return None
+
+    def get_subjects(self, obj):
+        if obj.subject:
+            return obj.subject.name
+        return None
+
+    def get_level(self, obj):
+        if obj.level:
+            return obj.level.name
+        return None
+
+    def get_languages(self, obj):
+        if obj.language:
+            return obj.language.name
+        return None
 
     class Meta(MinimalProgramSerializer.Meta):
         model = Program
@@ -1845,9 +1857,9 @@ class ProgramSerializer(MinimalProgramSerializer):
             'overview', 'weeks_to_complete', 'weeks_to_complete_min', 'weeks_to_complete_max',
             'min_hours_effort_per_week', 'max_hours_effort_per_week', 'video', 'expected_learning_items',
             'faq', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
-            'individual_endorsements', 'languages', 'transcript_languages', 'subject', 'price_ranges',
+            'individual_endorsements', 'languages', 'transcript_languages', 'subjects', 'price_ranges',
             'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering',
-            'enrollment_count', 'topics', 'credit_value',
+            'enrollment_count', 'topics', 'credit_value', 'level',
         )
 
 
