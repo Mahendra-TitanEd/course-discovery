@@ -2286,10 +2286,15 @@ class Program(PkSearchableMixin, TimeStampedModel):
         blank=True, default=0, help_text=_(
             'Number of credits a learner will earn upon successful completion of the program')
     )
+    #Added by Mahendra
     subject = models.ForeignKey(Subject, models.CASCADE, null=True, blank=True)
     topic = models.ForeignKey(Topic, models.CASCADE, null=True, blank=True)
     level = models.ForeignKey(LevelType, models.CASCADE, null=True, blank=True)
     language = models.ForeignKey(LanguageTag, models.CASCADE, null=True, blank=True)
+    start = models.DateTimeField(null=True, blank=True, db_index=True)
+    end = models.DateTimeField(null=True, blank=True, db_index=True)
+    enrollment_start = models.DateTimeField(null=True, blank=True)
+    assignment_due = models.DateTimeField(null=True, blank=True, db_index=True)
 
     objects = ProgramQuerySet.as_manager()
 

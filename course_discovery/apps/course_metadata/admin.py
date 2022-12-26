@@ -294,6 +294,7 @@ class ProgramAdmin(admin.ModelAdmin):
     exclude = ('card_image_url',)
 
     # ordering the field display on admin page.
+    # Updated by Mahendra
     fields = (
         'uuid', 'title', 'subtitle', 'marketing_hook', 'status', 'type', 'partner', 'banner_image', 'banner_image_url',
         'card_image', 'marketing_slug', 'overview', 'credit_redemption_overview', 'video', 'total_hours_of_effort',
@@ -301,7 +302,8 @@ class ProgramAdmin(admin.ModelAdmin):
         'order_courses_by_start_date', 'custom_course_runs_display', 'excluded_course_runs', 'authoring_organizations',
         'credit_backing_organizations', 'one_click_purchase_enabled', 'hidden', 'corporate_endorsements', 'faq',
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items', 'instructor_ordering',
-        'enrollment_count', 'recent_enrollment_count', 'credit_value',
+        'enrollment_count', 'recent_enrollment_count', 'credit_value', 'subject', 'topic', 'level', 'language', 'start',
+        'end', 'enrollment_start', 'assignment_due',
     )
 
     save_error = False
