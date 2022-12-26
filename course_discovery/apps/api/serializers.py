@@ -1797,6 +1797,11 @@ class ProgramSerializer(MinimalProgramSerializer):
     topics = serializers.SerializerMethodField()
     level = serializers.SerializerMethodField()
     languages = serializers.SerializerMethodField()
+    # short_description = HtmlField(required=False, allow_blank=True)
+    start_date = serializers.DateTimeField(format='%d %B %Y')
+    end_date = serializers.DateTimeField(format='%d %B %Y')
+    enrollment_start = serializers.DateTimeField(format='%d %B %Y')
+    assignment_due = serializers.DateTimeField(format='%d %B %Y')
 
     @classmethod
     def prefetch_queryset(cls, partner, queryset=None):
@@ -1859,7 +1864,8 @@ class ProgramSerializer(MinimalProgramSerializer):
             'faq', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
             'individual_endorsements', 'languages', 'transcript_languages', 'subjects', 'price_ranges',
             'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering',
-            'enrollment_count', 'topics', 'credit_value', 'level',
+            'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 'end_date', 'enrollment_start',
+            'assignment_due'
         )
 
 
