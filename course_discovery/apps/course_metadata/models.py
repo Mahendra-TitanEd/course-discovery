@@ -2293,7 +2293,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     language = models.ForeignKey(LanguageTag, models.CASCADE, null=True, blank=True)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
-    enrollment_start = models.DateTimeField(null=True, blank=True)
+    enrollment_end = models.DateTimeField(null=True, blank=True)
     assignment_due = models.DateTimeField(null=True, blank=True)
     overview_2 = models.TextField(verbose_name="Program Overview 2", null=True, blank=True)
     ebooks_overview = models.TextField(verbose_name="E-Books from EBC Reader Overview", null=True, blank=True)

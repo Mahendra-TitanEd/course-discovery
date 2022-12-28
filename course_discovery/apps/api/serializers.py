@@ -1799,7 +1799,7 @@ class ProgramSerializer(MinimalProgramSerializer):
     languages = serializers.SerializerMethodField()
     start_date = serializers.DateTimeField(format='%d %B %Y')
     end_date = serializers.DateTimeField(format='%d %B %Y')
-    enrollment_start = serializers.DateTimeField(format='%d %B %Y')
+    enrollment_end = serializers.DateTimeField(format='%d %B %Y')
     assignment_due = serializers.DateTimeField(format='%d %B %Y')
 
 
@@ -1864,7 +1864,7 @@ class ProgramSerializer(MinimalProgramSerializer):
             'faq', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
             'individual_endorsements', 'languages', 'transcript_languages', 'subjects', 'price_ranges',
             'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering',
-            'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 'end_date', 'enrollment_start',
+            'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 'end_date', 'enrollment_end',
             'assignment_due', 'certificte_overview', 'overview_2', 'ebooks_overview', 'placement_overview',
             'is_new', 'price', 'price_text', 'product_id',
         )
