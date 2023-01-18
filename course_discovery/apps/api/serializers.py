@@ -1848,7 +1848,7 @@ class ProgramSerializer(MinimalProgramSerializer):
 
     def get_level(self, obj):
         if obj.level:
-            return obj.level.name
+            return obj.level.name_t
         return None
 
     def get_languages(self, obj):
