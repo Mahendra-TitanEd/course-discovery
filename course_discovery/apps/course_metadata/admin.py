@@ -284,27 +284,26 @@ class CourseRunAdmin(admin.ModelAdmin):
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
-    list_display = ('id', 'uuid', 'title', 'type', 'partner', 'status', 'hidden')
-    list_filter = ('partner', 'type', 'status', ProgramEligibilityFilter, 'hidden',)
+    list_display = ('id', 'uuid', 'title', 'subject', 'start_date', 'price', 'product_id', 'status')
+    list_filter = ('partner', 'status', 'subject')
     ordering = ('uuid', 'title', 'status')
     readonly_fields = ('uuid', 'custom_course_runs_display', 'excluded_course_runs', 'enrollment_count',
                        'recent_enrollment_count',)
     raw_id_fields = ('video',)
     search_fields = ('uuid', 'title', 'marketing_slug')
-    exclude = ('card_image_url',)
+    #exclude = ('card_image_url',)
 
     # ordering the field display on admin page.
     # Updated by Mahendra
     fields = (
-        'uuid', 'title', 'subtitle', 'marketing_hook', 'status', 'type', 'partner', 'banner_image', 'banner_image_url',
-        'card_image', 'marketing_slug', 'overview', 'credit_redemption_overview', 'video', 'total_hours_of_effort',
-        'weeks_to_complete', 'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses',
-        'order_courses_by_start_date', 'custom_course_runs_display', 'excluded_course_runs', 'authoring_organizations',
-        'credit_backing_organizations', 'one_click_purchase_enabled', 'hidden', 'corporate_endorsements', 'faq',
+        'uuid', 'title', 'subtitle', 'status', 'type', 'partner', 'banner_image', 'card_image', 'marketing_slug', 
+        'overview', 'credit_redemption_overview', 'video', 'total_hours_of_effort', 'weeks_to_complete', 
+        'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses', 'order_courses_by_start_date', 
+        'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items', 'instructor_ordering',
-        'enrollment_count', 'recent_enrollment_count', 'credit_value', 'subject', 'topic', 'level', 'language', 'start_date',
-        'end_date', 'enrollment_end', 'assignment_due', 'overview_2', 'ebooks_overview', 'certificte_overview',
-        'placement_overview', 'is_new', 'price', 'price_text', 'product_id',
+        'subject', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end', 'assignment_due', 
+        'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
+        'price_text', 'product_id',
     )
 
     save_error = False

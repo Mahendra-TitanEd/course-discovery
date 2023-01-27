@@ -2181,7 +2181,7 @@ class FAQ(TimeStampedModel):
         ordering = ['created']
 
     def __str__(self):
-        return self.question
+        return "{} - Ans: {}".format(self.question, self.answer[:10]) 
 
 
 class Program(PkSearchableMixin, TimeStampedModel):
