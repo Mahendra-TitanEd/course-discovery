@@ -1853,7 +1853,7 @@ class ProgramSerializer(MinimalProgramSerializer):
 
     def get_languages(self, obj):
         if obj.language:
-            return obj.language.name
+            return obj.language.code
         return None
 
     class Meta(MinimalProgramSerializer.Meta):
