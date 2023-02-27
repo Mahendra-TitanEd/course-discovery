@@ -9,6 +9,7 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django_object_actions import DjangoObjectActions
+from django.conf import settings
 from parler.admin import TranslatableAdmin
 from waffle import get_waffle_flag_model
 
@@ -284,7 +285,7 @@ class CourseRunAdmin(admin.ModelAdmin):
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
-    list_display = ('id', 'uuid', 'title', 'subject', 'start_date', 'price', 'product_id', 'status')
+    list_display = ('id', 'uuid', 'title', 'subject', 'start_date', 'price', 'product_id', 'status', 'program_preview_link')
     list_filter = ('partner', 'status', 'subject')
     ordering = ('uuid', 'title', 'status')
     readonly_fields = ('uuid', 'custom_course_runs_display', 'excluded_course_runs', 'enrollment_count',
@@ -307,6 +308,24 @@ class ProgramAdmin(admin.ModelAdmin):
     )
 
     save_error = False
+
+    def program_preview_link(self, obj):
+        try:
+            preview_link = "{lms_root}/programs/{program_id}/about".format(
+                lms_root=settings.LMS_ROOT_URL,
+                program_id=obj.uuid
+            )
+            return format_html(
+                '<a href="{preview_link}" target="__blank">Preview</a>'.format(
+                    preview_link=preview_link
+                )
+            )
+        except Exception as e:
+            print(str(e))
+            return "#"
+
+    program_preview_link.allow_tags = True
+    program_preview_link.short_description = "Preview"
 
     def custom_course_runs_display(self, obj):
         return mark_safe('<br>'.join([str(run) for run in obj.course_runs]))
