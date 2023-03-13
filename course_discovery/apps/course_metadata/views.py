@@ -1,10 +1,13 @@
 from django.contrib import admin, messages
 from django.contrib.auth import get_permission_codename
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView, UpdateView, View
+from django.core.management import call_command
+from django.views.decorators.http import require_GET
+
 from taxonomy.signals.signals import UPDATE_COURSE_SKILLS
 from taxonomy.utils import (
     blacklist_course_skill, get_blacklisted_course_skills, get_whitelisted_course_skills,
@@ -226,3 +229,12 @@ class CourseSkillsView(View):
         return HttpResponseRedirect(
             reverse('admin:course_skills', args=(course_pk,))
         )
+
+
+@require_GET
+def refresh_course_metadata(request):
+    """
+    Call the refresh_course_metadata management command.
+    """
+    call_command('refresh_course_metadata --partner_code=openedx')
+    return HttpResponse('All courses refreshed successfully.')

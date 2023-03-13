@@ -28,6 +28,8 @@ from rest_framework import permissions
 
 from course_discovery.apps.core import views as core_views
 from course_discovery.apps.course_metadata.views import QueryPreviewView
+from course_discovery.apps.course_metadata.views import refresh_metadata
+
 
 admin.site.site_header = _('Discovery Service Administration')
 admin.site.site_title = admin.site.site_header
@@ -58,6 +60,7 @@ urlpatterns = oauth2_urlpatterns + [
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('taggit_autosuggest/', include('taggit_autosuggest.urls')),
     path('api/', include('course_discovery.apps.learner_pathway.api.urls', namespace='learner_pathway_api')),
+    path('catalog/management/refresh_course_metadata/', refresh_course_metadata, name='refresh_course_metadata'),
 ]
 
 # edx-drf-extensions csrf app
