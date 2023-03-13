@@ -28,8 +28,7 @@ from rest_framework import permissions
 
 from course_discovery.apps.core import views as core_views
 from course_discovery.apps.course_metadata.views import QueryPreviewView
-from course_discovery.apps.course_metadata.views import refresh_metadata
-
+from course_discovery.apps.course_metadata.views import refresh_course_metadata
 
 admin.site.site_header = _('Discovery Service Administration')
 admin.site.site_title = admin.site.site_header

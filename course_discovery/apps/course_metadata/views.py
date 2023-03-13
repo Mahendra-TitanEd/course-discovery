@@ -236,5 +236,5 @@ def refresh_course_metadata(request):
     """
     Call the refresh_course_metadata management command.
     """
-    call_command('refresh_course_metadata --partner_code=openedx')
+    call_command('refresh_course_metadata')
     return HttpResponse('All courses refreshed successfully.')
