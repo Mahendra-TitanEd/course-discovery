@@ -839,7 +839,7 @@ class Course(DraftModelMixin, PkSearchableMixin, CachedMixin, TimeStampedModel):
         related_name='related_courses',
         default=None, null=True, blank=True
     )
-    authoring_organizations = SortedManyToManyField(Organization, blank=True, related_name='authored_courses', verbose_name="Partners")
+    authoring_organizations = SortedManyToManyField(Organization, blank=True, related_name='authored_courses')
     sponsoring_organizations = SortedManyToManyField(Organization, blank=True, related_name='sponsored_courses')
     collaborators = SortedManyToManyField(Collaborator, null=True, blank=True, related_name='courses_collaborated')
     subjects = SortedManyToManyField(Subject, blank=True)
@@ -2222,7 +2222,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
                     'Estimated number of weeks needed to complete a course run belonging to this program.'))
     min_hours_effort_per_week = models.PositiveSmallIntegerField(null=True, blank=True)
     max_hours_effort_per_week = models.PositiveSmallIntegerField(null=True, blank=True)
-    authoring_organizations = SortedManyToManyField(Organization, blank=True, related_name='authored_programs')
+    authoring_organizations = SortedManyToManyField(Organization, blank=True, related_name='authored_programs', verbose_name="Partners")
     banner_image = StdImageField(
         upload_to=UploadToFieldNamePath(populate_from='uuid', path='media/programs/banner_images'),
         blank=True,
