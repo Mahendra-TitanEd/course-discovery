@@ -1859,7 +1859,7 @@ class ProgramSerializer(MinimalProgramSerializer):
 
     def get_partner(self, obj):
         if obj.partner:
-            return obj.name
+            return obj.partner.name
         return None
 
     class Meta(MinimalProgramSerializer.Meta):
