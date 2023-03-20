@@ -2287,7 +2287,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
             'Number of credits a learner will earn upon successful completion of the program')
     )
     #Added by Mahendra
-    subject = models.ForeignKey(Subject, models.CASCADE, null=True, blank=True)
+    subject = models.ForeignKey(Subject, models.CASCADE, null=True, blank=True, verbose_name="Purpose")
     topic = models.ForeignKey(Topic, models.CASCADE, null=True, blank=True)
     level = models.ForeignKey(LevelType, models.CASCADE, null=True, blank=True)
     language = models.ForeignKey(LanguageTag, models.CASCADE, null=True, blank=True)
@@ -2296,7 +2296,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     enrollment_end = models.DateTimeField(null=True, blank=True)
     assignment_due = models.DateTimeField(null=True, blank=True)
     overview_2 = models.TextField(verbose_name="Program Overview 2", null=True, blank=True)
-    ebooks_overview = models.TextField(verbose_name="E-Books from EBC Reader Overview", null=True, blank=True)
+    ebooks_overview = models.TextField(verbose_name="What’s included?", null=True, blank=True)
     certificte_overview = models.TextField(verbose_name="Program Certificate Overview", null=True, blank=True)
     placement_overview = models.TextField(verbose_name="INTERNSHIP & PLACEMENT PARTNERS Overview", null=True, blank=True)
     is_new = models.BooleanField(default=False)
