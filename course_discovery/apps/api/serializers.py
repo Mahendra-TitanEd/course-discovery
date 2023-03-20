@@ -1794,6 +1794,7 @@ class ProgramSerializer(MinimalProgramSerializer):
     staff = MinimalPersonSerializer(many=True)
     instructor_ordering = MinimalPersonSerializer(many=True)
     applicable_seat_types = serializers.SerializerMethodField()
+    partner = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
     level = serializers.SerializerMethodField()
     languages = serializers.SerializerMethodField()
@@ -1856,6 +1857,11 @@ class ProgramSerializer(MinimalProgramSerializer):
             return obj.language.code
         return None
 
+    def get_partner(self, obj):
+        if obj.partner:
+            return obj.name
+        return None
+
     class Meta(MinimalProgramSerializer.Meta):
         model = Program
         fields = MinimalProgramSerializer.Meta.fields + (
@@ -1866,7 +1872,7 @@ class ProgramSerializer(MinimalProgramSerializer):
             'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering',
             'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 'end_date', 'enrollment_end',
             'assignment_due', 'certificte_overview', 'overview_2', 'ebooks_overview', 'placement_overview',
-            'is_new', 'price', 'price_text', 'product_id',
+            'is_new', 'price', 'price_text', 'product_id', 'partner',
         )
 
 

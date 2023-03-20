@@ -839,7 +839,7 @@ class Course(DraftModelMixin, PkSearchableMixin, CachedMixin, TimeStampedModel):
         related_name='related_courses',
         default=None, null=True, blank=True
     )
-    authoring_organizations = SortedManyToManyField(Organization, blank=True, related_name='authored_courses')
+    authoring_organizations = SortedManyToManyField(Organization, blank=True, related_name='authored_courses', verbose_name="Partners")
     sponsoring_organizations = SortedManyToManyField(Organization, blank=True, related_name='sponsored_courses')
     collaborators = SortedManyToManyField(Collaborator, null=True, blank=True, related_name='courses_collaborated')
     subjects = SortedManyToManyField(Subject, blank=True)
@@ -2209,7 +2209,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     # NOTE (CCB): Editors of this field should validate the values to ensure only CourseRuns associated
     # with related Courses are stored.
     excluded_course_runs = models.ManyToManyField(CourseRun, blank=True)
-    partner = models.ForeignKey(Partner, models.CASCADE, null=True, blank=False)
+    partner = models.ForeignKey(Partner, models.CASCADE, null=True, blank=False, verbose_name="Institution")
     overview = models.TextField(null=True, blank=True)
     total_hours_of_effort = models.PositiveSmallIntegerField(
         null=True, blank=True,
