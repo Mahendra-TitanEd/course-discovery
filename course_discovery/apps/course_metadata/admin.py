@@ -297,7 +297,7 @@ class ProgramAdmin(admin.ModelAdmin):
     # ordering the field display on admin page.
     # Updated by Mahendra
     fields = (
-        'uuid', 'title', 'subtitle', 'status', 'type', 'partner', 'banner_image', 'card_image', 'marketing_slug', 
+        'uuid', 'title', 'subtitle', 'short_description', 'status', 'type', 'partner', 'banner_image', 'card_image', 'marketing_slug', 
         'overview', 'credit_redemption_overview', 'video', 'total_hours_of_effort', 'weeks_to_complete', 
         'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses', 'order_courses_by_start_date', 
         'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',

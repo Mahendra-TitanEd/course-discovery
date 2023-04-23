@@ -2287,6 +2287,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
             'Number of credits a learner will earn upon successful completion of the program')
     )
     #Added by Mahendra
+    short_description = models.TextField(verbose_name="Short Description", null=True, blank=True)
     subject = models.ForeignKey(Subject, models.CASCADE, null=True, blank=True, verbose_name="Purpose")
     topic = models.ForeignKey(Topic, models.CASCADE, null=True, blank=True)
     level = models.ForeignKey(LevelType, models.CASCADE, null=True, blank=True)
