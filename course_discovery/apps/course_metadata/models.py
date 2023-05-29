@@ -665,8 +665,9 @@ class Person(TimeStampedModel):
     """ Person model. """
     uuid = models.UUIDField(blank=False, null=False, default=uuid4, editable=False, verbose_name=_('UUID'))
     partner = models.ForeignKey(Partner, models.CASCADE, null=True, blank=False)
-    salutation = models.CharField(max_length=10, null=True, blank=True)
+    salutation = models.CharField("Title", max_length=10, null=True, blank=True)
     given_name = models.CharField(max_length=255)
+    designation = models.CharField(max_length=1024, null=True, blank=True)
     family_name = models.CharField(max_length=255, null=True, blank=True)
     bio = NullHtmlField()
     bio_language = models.ForeignKey(LanguageTag, models.CASCADE, null=True, blank=True)
