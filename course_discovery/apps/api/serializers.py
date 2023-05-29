@@ -425,7 +425,7 @@ class MinimalPersonSerializer(BaseModelSerializer):
     class Meta:
         model = Person
         fields = (
-            'uuid', 'salutation', 'given_name', 'family_name', 'bio', 'slug', 'position', 'areas_of_expertise',
+            'uuid', 'salutation', 'given_name', 'designation', 'family_name', 'bio', 'slug', 'position', 'areas_of_expertise',
             'profile_image', 'partner', 'works', 'urls', 'urls_detailed', 'email', 'profile_image_url', 'major_works',
             'published',
         )
