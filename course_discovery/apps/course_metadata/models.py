@@ -2305,7 +2305,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     price = models.PositiveIntegerField(default=0)
     price_text = models.CharField(max_length=255, null=True, blank=True)
     product_id = models.CharField(max_length=255, null=True, blank=True)
-
+    purchase_url = models.CharField(max_length=1024, null=True, blank=True, help_text=_('Enter third party website program purchase URL.'))
     objects = ProgramQuerySet.as_manager()
 
     history = HistoricalRecords()
