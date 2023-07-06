@@ -2213,11 +2213,11 @@ class Program(PkSearchableMixin, TimeStampedModel):
     partner = models.ForeignKey(Partner, models.CASCADE, null=True, blank=False, verbose_name="Institution")
     partner_display = models.CharField(
         max_length=512,
-        verbose_name=_("Partner Display String"),
+        verbose_name=_("Institution Display String"),
         null=True,
         blank=True,
         help_text=_(
-            'Enter the programme partner you want to have on the show." The partner you chose in previous partner is overridden by this setting. To use the chosen partner, leave it empty.'
+            'Enter the programme institution you want to have on the show.The institution you chose in previous institution is overridden by this setting. To use the chosen institution, leave it empty.'
         ),
     )
     overview = models.TextField(null=True, blank=True)
