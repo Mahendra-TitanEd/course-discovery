@@ -2211,6 +2211,15 @@ class Program(PkSearchableMixin, TimeStampedModel):
     # with related Courses are stored.
     excluded_course_runs = models.ManyToManyField(CourseRun, blank=True)
     partner = models.ForeignKey(Partner, models.CASCADE, null=True, blank=False, verbose_name="Institution")
+    partner_display = models.CharField(
+        max_length=512,
+        verbose_name=_("Partner Display String"),
+        null=True,
+        blank=True,
+        help_text=_(
+            'Enter the programme partner you want to have on the show." The partner you chose in previous partner is overridden by this setting. To use the chosen partner, leave it empty.'
+        ),
+    )
     overview = models.TextField(null=True, blank=True)
     total_hours_of_effort = models.PositiveSmallIntegerField(
         null=True, blank=True,
@@ -2304,6 +2313,13 @@ class Program(PkSearchableMixin, TimeStampedModel):
     is_new = models.BooleanField(default=False)
     price = models.PositiveIntegerField(default=0)
     price_text = models.CharField(max_length=255, null=True, blank=True)
+    tax_info = models.CharField(
+        default="Price not inclusive of GST",
+        max_length=512,
+        verbose_name=_("Tax Information"),
+        null=True,
+        blank=True,
+    )
     product_id = models.CharField(max_length=255, null=True, blank=True)
     purchase_url = models.CharField(max_length=1024, null=True, blank=True, help_text=_('Enter third party website program purchase URL.'))
     objects = ProgramQuerySet.as_manager()
