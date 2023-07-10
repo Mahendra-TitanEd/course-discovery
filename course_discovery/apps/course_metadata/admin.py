@@ -304,7 +304,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items', 'instructor_ordering',
         'subject', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
-        'price_text', 'tax_info', 'product_id', 'purchase_url',
+        'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code'
     )
 
     save_error = False

@@ -2322,6 +2322,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     )
     product_id = models.CharField(max_length=255, null=True, blank=True)
     purchase_url = models.CharField(max_length=1024, null=True, blank=True, help_text=_('Enter third party website program purchase URL.'))
+    campaign_code = models.TextField(verbose_name="Campaign embed code", null=True, blank=True)
     objects = ProgramQuerySet.as_manager()
 
     history = HistoricalRecords()

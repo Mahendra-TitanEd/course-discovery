@@ -1872,7 +1872,8 @@ class ProgramSerializer(MinimalProgramSerializer):
             'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering',
             'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 'end_date', 'enrollment_end',
             'assignment_due', 'certificte_overview', 'overview_2', 'ebooks_overview', 'placement_overview',
-            'is_new', 'price', 'price_text', 'product_id', 'purchase_url', 'tax_info', 'partner', 'partner_display', 'short_description',
+            'is_new', 'price', 'price_text', 'product_id', 'purchase_url', 'tax_info', 'partner', 'partner_display', 
+            'short_description', 'campaign_code'
         )
 
 
