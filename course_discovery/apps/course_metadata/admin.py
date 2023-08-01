@@ -281,10 +281,15 @@ class CourseRunAdmin(admin.ModelAdmin):
             msg = PUBLICATION_FAILURE_MSG_TPL.format(model='course run')
             messages.add_message(request, messages.ERROR, msg)
 
+class InstructorBlocksInline(admin.TabularInline):
+    model = InstructorBlocks
+    extra = 1
+
 
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
+    inlines = [InstructorBlocksInline]
     list_display = ('id', 'uuid', 'title', 'subject', 'start_date', 'price', 'product_id', 'status', 'program_preview_link')
     list_filter = ('partner', 'status', 'subject')
     ordering = ('uuid', 'title', 'status')
@@ -301,7 +306,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'overview', 'credit_redemption_overview', 'video', 'total_hours_of_effort', 'weeks_to_complete', 
         'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses', 'order_courses_by_start_date', 
         'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',
-        'individual_endorsements', 'job_outlook_items', 'expected_learning_items', 'instructor_ordering',
+        'individual_endorsements', 'job_outlook_items', 'expected_learning_items', 'instructor_ordering_title', 'instructor_ordering',
         'subject', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
         'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code'

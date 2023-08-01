@@ -2258,6 +2258,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     video = models.ForeignKey(Video, models.CASCADE, default=None, null=True, blank=True)
     expected_learning_items = SortedManyToManyField(ExpectedLearningItem, blank=True)
     faq = SortedManyToManyField(FAQ, blank=True)
+    instructor_ordering_title = models.CharField(max_length=512, default="Instructors")
     instructor_ordering = SortedManyToManyField(
         Person,
         blank=True,
@@ -2641,6 +2642,29 @@ class Program(PkSearchableMixin, TimeStampedModel):
                 publisher.publish_obj(self, previous_obj=previous_obj)
         else:
             super().save(*args, **kwargs)
+
+
+
+class InstructorBlocks(TimeStampedModel):
+    """
+    Represents the rankings of a Instructor blocks 
+    """
+    program = models.ForeignKey(Program, models.CASCADE)
+    title = models.CharField(max_length=1024)
+    instructor_ordering = SortedManyToManyField(
+        Person,
+        blank=True,
+        help_text=_('This field can be used by API clients to determine the order in which instructors will be '
+                    'displayed on program pages. Instructors in this list should appear before all others associated '
+                    'with this programs courses runs.')
+    )
+
+    class Meta:
+        verbose_name = _('InstructorBlocks')
+        verbose_name_plural = _('Instructor Blocks')
+
+    def __str__(self):
+        return self.title
 
 
 class Ranking(TimeStampedModel):
