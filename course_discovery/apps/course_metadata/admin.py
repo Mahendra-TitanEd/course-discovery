@@ -20,7 +20,7 @@ from course_discovery.apps.course_metadata.exceptions import (
     MarketingSiteAPIClientException, MarketingSitePublisherException
 )
 from course_discovery.apps.course_metadata.forms import (
-    CourseAdminForm, CourseRunAdminForm, PathwayAdminForm, ProgramAdminForm
+    CourseAdminForm, CourseRunAdminForm, PathwayAdminForm, ProgramAdminForm, InstructorBlocksAdminForm
 )
 from course_discovery.apps.course_metadata.models import *  # pylint: disable=wildcard-import
 from course_discovery.apps.course_metadata.views import CourseSkillsView, RefreshCourseSkillsView
@@ -282,6 +282,7 @@ class CourseRunAdmin(admin.ModelAdmin):
             messages.add_message(request, messages.ERROR, msg)
 
 class InstructorBlocksInline(admin.TabularInline):
+    form = InstructorBlocksAdminForm
     model = InstructorBlocks
     extra = 1
 
@@ -306,10 +307,10 @@ class ProgramAdmin(admin.ModelAdmin):
         'overview', 'credit_redemption_overview', 'video', 'total_hours_of_effort', 'weeks_to_complete', 
         'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses', 'order_courses_by_start_date', 
         'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',
-        'individual_endorsements', 'job_outlook_items', 'expected_learning_items', 'instructor_ordering_title', 'instructor_ordering',
+        'individual_endorsements', 'job_outlook_items', 'expected_learning_items',
         'subject', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
-        'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code'
+        'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
     )
 
     save_error = False

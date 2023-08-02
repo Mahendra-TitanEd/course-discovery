@@ -4,7 +4,7 @@ from django.forms.utils import ErrorList
 from django.utils.translation import gettext_lazy as _
 
 from course_discovery.apps.course_metadata.choices import ProgramStatus
-from course_discovery.apps.course_metadata.models import Course, CourseRun, Pathway, Program
+from course_discovery.apps.course_metadata.models import Course, CourseRun, Pathway, Program, InstructorBlocks
 from course_discovery.apps.course_metadata.widgets import SortedModelSelect2Multiple
 
 
@@ -158,3 +158,22 @@ class ExcludeSkillsForm(forms.Form):
             choices=((course_skill.skill.id, course_skill.skill.name) for course_skill in excluded_skills),
             required=False,
         )
+
+
+class InstructorBlocksAdminForm(forms.ModelForm):
+    class Meta:
+        model = InstructorBlocks
+        fields = '__all__'
+
+        widgets = {
+            'instructor_ordering': SortedModelSelect2Multiple(
+                url='admin_metadata:person-autocomplete',
+                attrs={
+                    'data-minimum-input-length': 3,
+                    'class': 'sortable-select',
+                }
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
