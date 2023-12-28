@@ -2326,6 +2326,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     campaign_code = models.TextField(verbose_name="Campaign embed code", null=True, blank=True)
     is_upcoming = models.BooleanField(default=False)
     advertised_start = models.CharField(verbose_name="Programme Advertised Start", max_length=1024, null=True, blank=True)
+    introduction_video = models.TextField("Brightcove Programme Introduction Video", null=True, blank=True)
 
     objects = ProgramQuerySet.as_manager()
 

@@ -304,7 +304,7 @@ class ProgramAdmin(admin.ModelAdmin):
     # Updated by Mahendra
     fields = (
         'uuid', 'title', 'subtitle', 'short_description', 'status', 'type', 'partner', 'partner_display', 'banner_image', 'card_image', 'marketing_slug', 
-        'overview', 'credit_redemption_overview', 'video', 'total_hours_of_effort', 'weeks_to_complete', 
+        'overview', 'credit_redemption_overview', 'video', 'introduction_video', 'total_hours_of_effort', 'weeks_to_complete', 
         'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses', 'order_courses_by_start_date', 
         'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items',
