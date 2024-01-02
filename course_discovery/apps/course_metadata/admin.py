@@ -308,7 +308,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses', 'order_courses_by_start_date', 
         'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items',
-        'subject', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end',
+        'subject', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end', 'upgrade_deadline',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
         'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
         'is_upcoming', 'advertised_start'

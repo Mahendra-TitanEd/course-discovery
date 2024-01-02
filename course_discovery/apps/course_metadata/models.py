@@ -2307,6 +2307,15 @@ class Program(PkSearchableMixin, TimeStampedModel):
     end_date = models.DateTimeField(null=True, blank=True)
     enrollment_end = models.DateTimeField(null=True, blank=True)
     assignment_due = models.DateTimeField(null=True, blank=True)
+    upgrade_deadline = models.DateField(
+        null=True,
+        blank=True,
+        help_text=_(
+            "After this date/time, users will no longer be able to purchase programme."
+            "Leave this blank if users can purchase this programme until enrollment closes."
+            "NOTE: Upgrade Deadline date must be later than the programme enrollment end date."
+        ),
+    )
     overview_2 = models.TextField(verbose_name="Program Overview 2", null=True, blank=True)
     ebooks_overview = models.TextField(verbose_name="What’s included?", null=True, blank=True)
     certificte_overview = models.TextField(verbose_name="Program Certificate Overview", null=True, blank=True)
