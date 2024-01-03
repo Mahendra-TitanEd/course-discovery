@@ -1810,6 +1810,7 @@ class ProgramSerializer(MinimalProgramSerializer):
     end_date = serializers.DateTimeField(format='%d %B %Y')
     enrollment_end = serializers.DateTimeField(format='%d %B %Y')
     assignment_due = serializers.DateTimeField(format='%d %B %Y')
+    upgrade_deadline = serializers.DateField(format='%d %B %Y')
     instructorblocks_set = InstructorBlocksSerializer(many=True)
 
     @classmethod
