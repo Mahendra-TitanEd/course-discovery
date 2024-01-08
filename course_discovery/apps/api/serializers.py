@@ -1882,7 +1882,7 @@ class ProgramSerializer(MinimalProgramSerializer):
             'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 'end_date', 'enrollment_end', 'upgrade_deadline',
             'assignment_due', 'certificte_overview', 'overview_2', 'ebooks_overview', 'placement_overview',
             'is_new', 'price', 'price_text', 'product_id', 'purchase_url', 'tax_info', 'partner', 'partner_display', 
-            'short_description', 'campaign_code', 'instructorblocks_set', 'is_upcoming', 'advertised_start', 'introduction_video'
+            'short_description', 'campaign_code', 'instructorblocks_set', 'is_upcoming', 'advertised_start', 'introduction_video', 'access_duration'
         )
 
 

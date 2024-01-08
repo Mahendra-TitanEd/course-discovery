@@ -2336,7 +2336,11 @@ class Program(PkSearchableMixin, TimeStampedModel):
     is_upcoming = models.BooleanField(default=False)
     advertised_start = models.CharField(verbose_name="Programme Advertised Start", max_length=1024, null=True, blank=True)
     introduction_video = models.TextField("Brightcove Programme Introduction Video", null=True, blank=True, help_text=_('Enter Brightcove video embed code here.'))
-
+    access_duration = models.PositiveIntegerField(
+        verbose_name="Programme Access Duration (in days)",
+        default=365,
+        help_text="Enter the duration of the programme in days. This duration will be used to set the course access end date once a user enrolls into the programme.",
+    )
     objects = ProgramQuerySet.as_manager()
 
     history = HistoricalRecords()

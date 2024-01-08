@@ -311,7 +311,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'subject', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end', 'upgrade_deadline',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
         'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
-        'is_upcoming', 'advertised_start'
+        'is_upcoming', 'advertised_start', 'access_duration'
     )
 
     save_error = False
