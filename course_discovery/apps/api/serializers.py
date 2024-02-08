@@ -36,7 +36,7 @@ from course_discovery.apps.course_metadata.models import (
     CourseEditor, CourseEntitlement, CourseRun, CourseRunType, CourseType, Curriculum, CurriculumCourseMembership,
     CurriculumProgramMembership, Degree, DegreeCost, DegreeDeadline, Endorsement, Fact, IconTextPairing, Image,
     LevelType, Mode, Organization, Pathway, Person, PersonAreaOfExpertise, PersonSocialNetwork, Position, Prerequisite,
-    Program, ProgramType, Ranking, Seat, SeatType, Subject, Topic, Track, Video, InstructorBlocks
+    Program, ProgramType, Ranking, Seat, SeatType, Subject, Topic, Track, Video, InstructorBlocks, VideosBlock
 )
 from course_discovery.apps.course_metadata.utils import get_course_run_estimated_hours, parse_course_key_fragment
 from course_discovery.apps.ietf_language_tags.models import LanguageTag
@@ -1781,6 +1781,12 @@ class InstructorBlocksSerializer(BaseModelSerializer):
         model = InstructorBlocks
         fields = ('title', 'instructor_ordering')
 
+class VideosBlockSerializer(BaseModelSerializer):
+    """ Curriculum model serializer """
+    class Meta:
+        model = VideosBlock
+        fields = ('title', 'iframe_url')
+
 class ProgramSerializer(MinimalProgramSerializer):
     authoring_organizations = OrganizationSerializer(many=True)
     video = VideoSerializer()
@@ -1812,6 +1818,7 @@ class ProgramSerializer(MinimalProgramSerializer):
     assignment_due = serializers.DateTimeField(format='%d %B %Y')
     upgrade_deadline = serializers.DateField(format='%d %B %Y')
     instructorblocks_set = InstructorBlocksSerializer(many=True)
+    videosblock_set = VideosBlockSerializer(many=True)
 
     @classmethod
     def prefetch_queryset(cls, partner, queryset=None):
@@ -1878,11 +1885,12 @@ class ProgramSerializer(MinimalProgramSerializer):
             'min_hours_effort_per_week', 'max_hours_effort_per_week', 'video', 'expected_learning_items',
             'faq', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
             'individual_endorsements', 'languages', 'transcript_languages', 'subjects', 'price_ranges',
-            'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering_title', 'instructor_ordering',
-            'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 'end_date', 'enrollment_end', 'upgrade_deadline',
-            'assignment_due', 'certificte_overview', 'overview_2', 'ebooks_overview', 'placement_overview',
-            'is_new', 'price', 'price_text', 'product_id', 'purchase_url', 'tax_info', 'partner', 'partner_display', 
-            'short_description', 'campaign_code', 'instructorblocks_set', 'is_upcoming', 'advertised_start', 'introduction_video', 'access_duration'
+            'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering_title', 
+            'instructor_ordering', 'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 
+            'end_date', 'enrollment_end', 'upgrade_deadline', 'assignment_due', 'certificte_overview', 'overview_2', 
+            'ebooks_overview', 'placement_overview', 'is_new', 'price', 'price_text', 'product_id', 'purchase_url', 
+            'tax_info', 'partner', 'partner_display', 'short_description', 'campaign_code', 'instructorblocks_set', 
+            'is_upcoming', 'advertised_start', 'introduction_video', 'access_duration', 'program_about', 'videosblock_set'
         )
 
 

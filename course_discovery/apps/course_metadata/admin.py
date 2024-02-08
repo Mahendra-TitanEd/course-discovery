@@ -287,10 +287,15 @@ class InstructorBlocksInline(admin.TabularInline):
     extra = 1
 
 
+class VideosBlockInline(admin.TabularInline):
+    model = VideosBlock
+    extra = 1
+
+
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
-    inlines = [InstructorBlocksInline]
+    inlines = [InstructorBlocksInline, VideosBlockInline]
     list_display = ('id', 'uuid', 'title', 'subject', 'start_date', 'price', 'product_id', 'status', 'program_preview_link')
     list_filter = ('partner', 'status', 'subject', 'is_upcoming')
     ordering = ('uuid', 'title', 'status')
@@ -304,7 +309,7 @@ class ProgramAdmin(admin.ModelAdmin):
     # Updated by Mahendra
     fields = (
         'uuid', 'title', 'subtitle', 'short_description', 'status', 'type', 'partner', 'partner_display', 'banner_image', 'card_image', 'marketing_slug', 
-        'overview', 'credit_redemption_overview', 'video', 'introduction_video', 'total_hours_of_effort', 'weeks_to_complete', 
+        'program_about', 'overview', 'credit_redemption_overview', 'video', 'introduction_video', 'total_hours_of_effort', 'weeks_to_complete', 
         'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses', 'order_courses_by_start_date', 
         'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items',

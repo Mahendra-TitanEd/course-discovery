@@ -2220,7 +2220,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
             'Enter the programme institution you want to have on the show.The institution you chose in previous institution is overridden by this setting. To use the chosen institution, leave it empty.'
         ),
     )
-    overview = models.TextField(null=True, blank=True)
+    overview = models.TextField(null=True, blank=True, verbose_name="Program About")
     total_hours_of_effort = models.PositiveSmallIntegerField(
         null=True, blank=True,
         help_text='Total estimated time needed to complete all courses belonging to this program. This field is '
@@ -2298,6 +2298,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
             'Number of credits a learner will earn upon successful completion of the program')
     )
     #Added by Mahendra
+    program_about = models.TextField(null=True, blank=True, verbose_name="Overview")
     short_description = models.TextField(verbose_name="Short Description", null=True, blank=True)
     subject = models.ForeignKey(Subject, models.CASCADE, null=True, blank=True, verbose_name="Purpose")
     topic = models.ForeignKey(Topic, models.CASCADE, null=True, blank=True)
@@ -2679,6 +2680,22 @@ class InstructorBlocks(TimeStampedModel):
     class Meta:
         verbose_name = _('InstructorBlocks')
         verbose_name_plural = _('Instructor Blocks')
+
+    def __str__(self):
+        return self.title
+
+
+class VideosBlock(TimeStampedModel):
+    """
+    Represents the program related videos
+    """
+    program = models.ForeignKey(Program, models.CASCADE)
+    title = models.CharField(max_length=1024)
+    iframe_url = models.TextField(verbose_name="Iframe url")
+
+    class Meta:
+        verbose_name = _('VideoBlock')
+        verbose_name_plural = _('Videos Block')
 
     def __str__(self):
         return self.title
