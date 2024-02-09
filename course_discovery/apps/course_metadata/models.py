@@ -2342,6 +2342,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
         default=365,
         help_text="Enter the duration of the programme in days. This duration will be used to set the course access end date once a user enrolls into the programme.",
     )
+    video_block_title = models.CharField(verbose_name="Video Block Title", max_length=2056, null=True, blank=True)
     objects = ProgramQuerySet.as_manager()
 
     history = HistoricalRecords()
@@ -2690,7 +2691,7 @@ class VideosBlock(TimeStampedModel):
     Represents the program related videos
     """
     program = models.ForeignKey(Program, models.CASCADE)
-    title = models.CharField(max_length=1024)
+    title = models.CharField(max_length=1024, null=True, blank=True)
     iframe_url = models.TextField(verbose_name="Iframe url")
 
     class Meta:
