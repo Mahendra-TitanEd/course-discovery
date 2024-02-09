@@ -2699,7 +2699,7 @@ class VideosBlock(TimeStampedModel):
         verbose_name_plural = _('Videos Block')
 
     def __str__(self):
-        return self.title
+        return "{}".format(self.title)
 
 
 class Ranking(TimeStampedModel):
