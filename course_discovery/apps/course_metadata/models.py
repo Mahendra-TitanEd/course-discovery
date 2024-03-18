@@ -2335,6 +2335,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     purchase_url = models.CharField(max_length=1024, null=True, blank=True, help_text=_('Enter third party website program purchase URL.'))
     campaign_code = models.TextField(verbose_name="Campaign embed code", null=True, blank=True)
     is_upcoming = models.BooleanField(default=False)
+    in_subscription = models.BooleanField("Include programme in subscription?", default=False)
     advertised_start = models.CharField(verbose_name="Programme Advertised Start", max_length=1024, null=True, blank=True)
     introduction_video = models.TextField("Brightcove Programme Introduction Video", null=True, blank=True, help_text=_('Enter Brightcove video embed code here.'))
     access_duration = models.PositiveIntegerField(

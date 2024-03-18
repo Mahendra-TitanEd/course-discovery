@@ -297,7 +297,7 @@ class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
     inlines = [InstructorBlocksInline, VideosBlockInline]
     list_display = ('id', 'uuid', 'title', 'subject', 'start_date', 'price', 'product_id', 'status', 'program_preview_link')
-    list_filter = ('partner', 'status', 'subject', 'is_upcoming')
+    list_filter = ('partner', 'status', 'subject', 'is_upcoming', 'in_subscription')
     ordering = ('uuid', 'title', 'status')
     readonly_fields = ('uuid', 'custom_course_runs_display', 'excluded_course_runs', 'enrollment_count',
                        'recent_enrollment_count',)
@@ -316,7 +316,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'subject', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end', 'upgrade_deadline',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
         'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
-        'is_upcoming', 'advertised_start', 'access_duration', 'video_block_title'
+        'is_upcoming', 'in_subscription', 'advertised_start', 'access_duration', 'video_block_title'
     )
 
     save_error = False
