@@ -2344,6 +2344,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
         help_text="Enter the duration of the programme in days. This duration will be used to set the course access end date once a user enrolls into the programme.",
     )
     video_block_title = models.CharField(verbose_name="Video Block Title", max_length=2056, null=True, blank=True)
+    seo_title = models.CharField(verbose_name="Programme SEO Title", max_length=2056, null=True, blank=True)
     objects = ProgramQuerySet.as_manager()
 
     history = HistoricalRecords()

@@ -1891,7 +1891,7 @@ class ProgramSerializer(MinimalProgramSerializer):
             'ebooks_overview', 'placement_overview', 'is_new', 'price', 'price_text', 'product_id', 'purchase_url', 
             'tax_info', 'partner', 'partner_display', 'short_description', 'campaign_code', 'instructorblocks_set', 
             'is_upcoming', 'in_subscription', 'advertised_start', 'introduction_video', 'access_duration', 'program_about', 
-            'videosblock_set', 'video_block_title'
+            'videosblock_set', 'video_block_title', 'seo_title'
         )
 
 
