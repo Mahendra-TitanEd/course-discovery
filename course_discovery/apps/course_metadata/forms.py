@@ -43,7 +43,7 @@ class ProgramAdminForm(forms.ModelForm):
                 }
             ),
             'categories': SortedModelSelect2Multiple(
-                url='admin_metadata:person-autocomplete',
+                url='admin_metadata:subject-autocomplete',
                 attrs={
                     'data-minimum-input-length': 3,
                     'class': 'sortable-select',

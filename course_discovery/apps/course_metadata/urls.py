@@ -5,7 +5,7 @@ URLs for the admin autocomplete lookups.
 from django.urls import path
 
 from course_discovery.apps.course_metadata.lookups import (
-    CourseAutocomplete, CourseRunAutocomplete, OrganizationAutocomplete, PersonAutocomplete, ProgramAutocomplete
+    CourseAutocomplete, CourseRunAutocomplete, OrganizationAutocomplete, PersonAutocomplete, ProgramAutocomplete, SubjectAutocomplete
 )
 from course_discovery.apps.course_metadata.views import CourseRunSelectionAdmin
 
@@ -18,4 +18,5 @@ urlpatterns = [
     path('organisation-autocomplete/', OrganizationAutocomplete.as_view(), name='organisation-autocomplete',),
     path('person-autocomplete/', PersonAutocomplete.as_view(), name='person-autocomplete',),
     path('program-autocomplete/', ProgramAutocomplete.as_view(), name='program-autocomplete',),
+    path('subject-autocomplete/', SubjectAutocomplete.as_view(), name='subject-autocomplete',),
 ]

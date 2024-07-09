@@ -4,7 +4,7 @@ from dal import autocomplete
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 
-from .models import Course, CourseRun, Organization, Person, Program
+from .models import Course, CourseRun, Organization, Person, Program, Subject
 
 
 class CourseAutocomplete(autocomplete.Select2QuerySetView):
@@ -82,5 +82,22 @@ class PersonAutocomplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
                 queryset = Person.objects.filter(uuid=q_uuid)
             except ValueError:
                 pass
+
+        return queryset
+
+
+
+class SubjectAutocomplete(LoginRequiredMixin, autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        words = self.q and self.q.split()
+        if not words:
+            return []
+
+        # Match each word separately
+        queryset = Subject.objects.all()
+
+        for word in words:
+            # Progressively filter the same queryset - every word must match something
+            queryset = queryset.filter(slug__icontains=word)
 
         return queryset
