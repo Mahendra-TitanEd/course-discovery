@@ -2301,7 +2301,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     program_about = models.TextField(null=True, blank=True, verbose_name="Overview")
     short_description = models.TextField(verbose_name="Short Description", null=True, blank=True)
     subject = models.ForeignKey(Subject, models.CASCADE, null=True, blank=True, verbose_name="Category")
-    categories = SortedManyToManyField(Subject, blank=True)
+    categories = SortedManyToManyField(Subject, blank=True, related_name='categories')
     topic = models.ForeignKey(Topic, models.CASCADE, null=True, blank=True)
     level = models.ForeignKey(LevelType, models.CASCADE, null=True, blank=True)
     language = models.ForeignKey(LanguageTag, models.CASCADE, null=True, blank=True)
