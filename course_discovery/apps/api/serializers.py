@@ -1805,7 +1805,7 @@ class ProgramSerializer(MinimalProgramSerializer):
         help_text=_('Languages that course runs in this program have available transcripts in.'),
     )
     subjects = serializers.SerializerMethodField()
-    categories = SubjectSerializer()
+    categories = SubjectSerializer(many=True)
     staff = MinimalPersonSerializer(many=True)
     instructor_ordering = MinimalPersonSerializer(many=True)
     applicable_seat_types = serializers.SerializerMethodField()
