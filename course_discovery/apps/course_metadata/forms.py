@@ -42,6 +42,13 @@ class ProgramAdminForm(forms.ModelForm):
                     'class': 'sortable-select',
                 }
             ),
+            'categories': SortedModelSelect2Multiple(
+                url='admin_metadata:person-autocomplete',
+                attrs={
+                    'data-minimum-input-length': 3,
+                    'class': 'sortable-select',
+                }
+            ),
         }
 
     def __init__(self, *args, **kwargs):
