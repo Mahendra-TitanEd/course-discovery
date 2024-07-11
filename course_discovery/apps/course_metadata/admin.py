@@ -296,8 +296,8 @@ class VideosBlockInline(admin.TabularInline):
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
     inlines = [InstructorBlocksInline, VideosBlockInline]
-    list_display = ('id', 'uuid', 'title', 'subject', 'start_date', 'price', 'product_id', 'status', 'program_preview_link')
-    list_filter = ('partner', 'status', 'subject', 'is_upcoming', 'in_subscription')
+    list_display = ('id', 'uuid', 'title', 'start_date', 'price', 'product_id', 'status', 'program_preview_link')
+    list_filter = ('partner', 'status', 'is_upcoming', 'in_subscription')
     ordering = ('uuid', 'title', 'status')
     readonly_fields = ('uuid', 'custom_course_runs_display', 'excluded_course_runs', 'enrollment_count',
                        'recent_enrollment_count',)
