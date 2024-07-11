@@ -1804,7 +1804,6 @@ class ProgramSerializer(MinimalProgramSerializer):
         many=True, read_only=True, slug_field='code',
         help_text=_('Languages that course runs in this program have available transcripts in.'),
     )
-    subjects = serializers.SerializerMethodField()
     categories = SubjectSerializer(many=True)
     staff = MinimalPersonSerializer(many=True)
     instructor_ordering = MinimalPersonSerializer(many=True)
@@ -1886,7 +1885,7 @@ class ProgramSerializer(MinimalProgramSerializer):
             'overview', 'weeks_to_complete', 'weeks_to_complete_min', 'weeks_to_complete_max',
             'min_hours_effort_per_week', 'max_hours_effort_per_week', 'video', 'expected_learning_items',
             'faq', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
-            'individual_endorsements', 'languages', 'transcript_languages', 'subjects', 'categories', 'price_ranges',
+            'individual_endorsements', 'languages', 'transcript_languages', 'categories', 'price_ranges',
             'staff', 'credit_redemption_overview', 'applicable_seat_types', 'instructor_ordering_title', 
             'instructor_ordering', 'enrollment_count', 'topics', 'credit_value', 'level', 'start_date', 
             'end_date', 'enrollment_end', 'upgrade_deadline', 'assignment_due', 'certificte_overview', 'overview_2', 
