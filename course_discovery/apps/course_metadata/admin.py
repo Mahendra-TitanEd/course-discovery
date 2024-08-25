@@ -306,17 +306,17 @@ class ProgramAdmin(admin.ModelAdmin):
     #exclude = ('card_image_url',)
 
     # ordering the field display on admin page.
-    # Updated by Mahendra
+    # Updated by Mahendra and  effort field  is added by yagnesh
     fields = (
         'uuid', 'title', 'subtitle', 'seo_title', 'short_description', 'status', 'type', 'partner', 'partner_display', 'banner_image', 'card_image', 'marketing_slug', 
         'program_about', 'overview', 'credit_redemption_overview', 'video', 'introduction_video', 'total_hours_of_effort', 'weeks_to_complete', 
-        'min_hours_effort_per_week', 'max_hours_effort_per_week', 'courses', 'order_courses_by_start_date', 
+        'min_hours_effort_per_week', 'max_hours_effort_per_week', 'effort', 'courses', 'order_courses_by_start_date', 
         'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items',
         'categories', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end', 'upgrade_deadline',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
         'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
-        'is_upcoming', 'in_subscription', 'advertised_start', 'access_duration', 'video_block_title'
+        'is_upcoming', 'in_subscription', 'advertised_start', 'access_duration', 'video_block_title',
     )
 
     save_error = False
