@@ -2298,6 +2298,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
             'Number of credits a learner will earn upon successful completion of the program')
     )
     #Added by Mahendra
+    effort = models.CharField(max_length=255, null=True, blank=True)
     program_about = models.TextField(null=True, blank=True, verbose_name="Overview")
     short_description = models.TextField(verbose_name="Short Description", null=True, blank=True)
     categories = SortedManyToManyField(Subject, blank=True, related_name='categories')
