@@ -315,7 +315,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items',
         'categories', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_end', 'upgrade_deadline',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'is_new', 'price', 
-        'price_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
+        'price_text', 'offer_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
         'is_upcoming', 'in_subscription', 'advertised_start', 'access_duration', 'video_block_title',
     )
 
