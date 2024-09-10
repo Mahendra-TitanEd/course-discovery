@@ -2329,7 +2329,18 @@ class Program(PkSearchableMixin, TimeStampedModel):
     placement_overview = models.TextField(verbose_name="INTERNSHIP & PLACEMENT PARTNERS Overview", null=True, blank=True)
     is_new = models.BooleanField(default=False)
     price = models.PositiveIntegerField(default=0)
-    price_text = models.CharField(max_length=255, null=True, blank=True)
+    price_text = models.TextField(
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text="Enter a brief note or promotional message to be displayed below the price on the programme about page. This note could include information like included subscription, price for annual etc. Leave blank if no additional note is required.",
+    )
+    offer_text = models.TextField(
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text="Enter a short offer or discounts notes to be displayed below the price on the programm about page. This note could include information like limited-time offers, discounts, or strike price etc. Leave blank if no additional note is required.",
+    )
     tax_info = models.CharField(
         default="Price not inclusive of GST",
         max_length=512,
