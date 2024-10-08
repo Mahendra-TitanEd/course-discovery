@@ -2312,6 +2312,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     language = models.ForeignKey(LanguageTag, models.CASCADE, null=True, blank=True)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
+    enrollment_start = models.DateTimeField(null=True, blank=True)
     enrollment_end = models.DateTimeField(null=True, blank=True)
     assignment_due = models.DateTimeField(null=True, blank=True)
     upgrade_deadline = models.DateField(
