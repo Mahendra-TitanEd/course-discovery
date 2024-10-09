@@ -2353,6 +2353,13 @@ class Program(PkSearchableMixin, TimeStampedModel):
     is_upcoming = models.BooleanField(default=False)
     in_subscription = models.BooleanField("Include programme in subscription?", default=False)
     advertised_start = models.CharField(verbose_name="Programme Advertised Start", max_length=1024, null=True, blank=True)
+    enrollment_btn_title = models.CharField(
+        max_length=255,
+        verbose_name="Enrollment Button Title",
+        default="Enrollment Starts Soon",
+        help_text="This field allows admins to set a custom title for the enrollment button on the program about page. "
+                  "If the program's enrollment start date is in the future, this message will replace 'Enroll Now'."
+    )
     introduction_video = models.TextField("Brightcove Programme Introduction Video", null=True, blank=True, help_text=_('Enter Brightcove video embed code here.'))
     access_duration = models.PositiveIntegerField(
         verbose_name="Programme Access Duration (in days)",
