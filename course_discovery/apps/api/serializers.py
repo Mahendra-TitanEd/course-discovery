@@ -1892,7 +1892,7 @@ class ProgramSerializer(MinimalProgramSerializer):
             'ebooks_overview', 'placement_overview', 'is_new', 'price', 'price_text', 'offer_text', 'product_id', 'purchase_url', 
             'tax_info', 'partner', 'partner_display', 'short_description', 'campaign_code', 'instructorblocks_set', 
             'is_upcoming', 'in_subscription', 'advertised_start', 'introduction_video', 'access_duration', 'program_about', 
-            'videosblock_set', 'video_block_title', 'seo_title', 'effort', 'enrollment_btn_title'  # Added by Yagnesh effort field
+            'videosblock_set', 'video_block_title', 'seo_title', 'effort', 'enrollment_btn_title', 'enrollment_info', 'additional_campaign_info', 'advertised_start'  # Added by Yagnesh effort field
         )
 
 

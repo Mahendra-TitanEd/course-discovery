@@ -2352,7 +2352,8 @@ class Program(PkSearchableMixin, TimeStampedModel):
     campaign_code = models.TextField(verbose_name="Campaign embed code", null=True, blank=True)
     is_upcoming = models.BooleanField(default=False)
     in_subscription = models.BooleanField("Include programme in subscription?", default=False)
-    advertised_start = models.CharField(verbose_name="Programme Advertised Start", max_length=1024, null=True, blank=True)
+    advertised_start = models.CharField(verbose_name="Programme Advertised Start", max_length=1024, null=True, blank=True, help_text="Enter information to be displayed insted of start date on the program about page")
+    enrollment_info = models.CharField(verbose_name="Enrollment Information", max_length=1024, null=True, blank=True, help_text="Enter information to be displayed on top of enrollment button on the  program about page")
     enrollment_btn_title = models.CharField(
         max_length=255,
         verbose_name="Enrollment Button Title",
@@ -2368,6 +2369,7 @@ class Program(PkSearchableMixin, TimeStampedModel):
     )
     video_block_title = models.CharField(verbose_name="Video Block Title", max_length=2056, null=True, blank=True)
     seo_title = models.CharField(verbose_name="Programme SEO Title", max_length=2056, null=True, blank=True)
+    additional_campaign_info = models.TextField(verbose_name="Additional Campaign information", null=True, blank=True, help_text="Enter the HTML code(like buttons, links) to be displayed on the program about page below start date, price, instutiton etc information")
     objects = ProgramQuerySet.as_manager()
 
     history = HistoricalRecords()
