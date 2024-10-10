@@ -314,7 +314,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'authoring_organizations','credit_backing_organizations', 'corporate_endorsements', 'faq',
         'individual_endorsements', 'job_outlook_items', 'expected_learning_items',
         'categories', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_start', 'enrollment_end', 'enrollment_btn_title', 'upgrade_deadline',
-        'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'additional_campaign_info' 'is_new', 'price', 
+        'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'additional_campaign_info', 'is_new', 'price', 
         'price_text', 'offer_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
         'is_upcoming', 'in_subscription', 'advertised_start', 'enrollment_info',  'access_duration', 'video_block_title',
     )
