@@ -1,5 +1,9 @@
 from adminsortable2.admin import SortableAdminMixin
 from dal import autocomplete
+from uuid import uuid4
+from copy import deepcopy
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import path
 from django.contrib import admin, messages
 from django.db.utils import IntegrityError
 from django.forms import CheckboxSelectMultiple, ModelForm
@@ -374,7 +378,7 @@ class ProgramAdmin(admin.ModelAdmin):
             getattr(new_program, m2m_field).set(m2m_data)
 
         # Redirect to the edit page of the new program
-        return redirect(f'/admin/your_app_name/program/{new_program.id}/change/')
+        return redirect(f'/admin/course_metadata/program/{new_program.id}/change/')
 
     def duplicate_button(self, obj):
         return format_html('<a class="button" href="{}">Duplicate</a>', f'{obj.id}/duplicate/')
