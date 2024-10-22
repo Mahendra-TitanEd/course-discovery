@@ -304,7 +304,7 @@ class ProgramAdmin(admin.ModelAdmin):
     raw_id_fields = ('video',)
     search_fields = ('uuid', 'title', 'marketing_slug')
     #exclude = ('card_image_url',)
-
+    actions = ['duplicate_program']
     # ordering the field display on admin page.
     # Updated by Mahendra and  effort field  is added by yagnesh
     fields = (
@@ -343,6 +343,19 @@ class ProgramAdmin(admin.ModelAdmin):
         return mark_safe('<br>'.join([str(run) for run in obj.course_runs]))
 
     custom_course_runs_display.short_description = _('Included course runs')
+
+
+    def duplicate_program(self, request, queryset):
+        for program in queryset:
+            new_program = program
+            new_program.pk = None  # This ensures a new record is created
+            new_program.uuid = uuid4()  # Generate a new UUID for the duplicate
+            new_program.title = f"{program.title} (Copy)"  # Modify the title
+            new_program.save()  # Save the new program
+
+        self.message_user(request, "Selected programs were duplicated successfully.")
+
+    duplicate_program.short_description = "Duplicate selected programs"
 
     def _redirect_course_run_update_page(self, obj):
         """ Returns a response redirect to a page where the user can update the
