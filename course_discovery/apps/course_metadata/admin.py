@@ -348,10 +348,11 @@ class ProgramAdmin(admin.ModelAdmin):
     def duplicate_program(self, request, queryset):
         for program in queryset:
             new_program = program
-            new_program.pk = None  # This ensures a new record is created
-            new_program.uuid = uuid4()  # Generate a new UUID for the duplicate
-            new_program.title = f"{program.title} (Copy)"  # Modify the title
-            new_program.save()  # Save the new program
+            new_program.pk = None
+            new_program.uuid = uuid4()
+            new_program.title = f"{program.title} (Copy)"
+            new_program.marketing_slug =  f"{program.marketing_slug}-(Copy)"
+            new_program.save()
 
         self.message_user(request, "Selected programs were duplicated successfully.")
 
