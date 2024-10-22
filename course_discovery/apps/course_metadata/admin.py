@@ -296,7 +296,7 @@ class VideosBlockInline(admin.TabularInline):
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
     inlines = [InstructorBlocksInline, VideosBlockInline]
-    list_display = ('id', 'uuid', 'title', 'start_date', 'price', 'product_id', 'status', 'program_preview_link')
+    list_display = ('id', 'uuid', 'title', 'start_date', 'price', 'product_id', 'status', 'program_preview_link', 'duplicate_button')
     list_filter = ('partner', 'status', 'is_upcoming', 'in_subscription')
     ordering = ('uuid', 'title', 'status')
     readonly_fields = ('uuid', 'custom_course_runs_display', 'excluded_course_runs', 'enrollment_count',
@@ -304,7 +304,7 @@ class ProgramAdmin(admin.ModelAdmin):
     raw_id_fields = ('video',)
     search_fields = ('uuid', 'title', 'marketing_slug')
     #exclude = ('card_image_url',)
-    actions = ['duplicate_program']
+    # actions = ['duplicate_program']
     # ordering the field display on admin page.
     # Updated by Mahendra and  effort field  is added by yagnesh
     fields = (
@@ -345,18 +345,54 @@ class ProgramAdmin(admin.ModelAdmin):
     custom_course_runs_display.short_description = _('Included course runs')
 
 
-    def duplicate_program(self, request, queryset):
-        for program in queryset:
-            new_program = program
-            new_program.pk = None
-            new_program.uuid = uuid4()
-            new_program.title = f"{program.title} (Copy)"
-            new_program.marketing_slug =  f"{program.marketing_slug}-(Copy)"
-            new_program.save()
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('<int:program_id>/duplicate/', self.duplicate_program_view, name='duplicate_program'),
+        ]
+        return custom_urls + urls
 
-        self.message_user(request, "Selected programs were duplicated successfully.")
 
-    duplicate_program.short_description = "Duplicate selected programs"
+    def duplicate_program_view(self, request, program_id):
+        # Get the original program
+        original_program = get_object_or_404(Program, pk=program_id)
+        
+        # Duplicate the program
+        new_program = deepcopy(original_program)  # Create a deep copy
+        new_program.pk = None  # Reset primary key to create a new object
+        new_program.uuid = uuid4()  # Assign a new UUID
+        new_program.title = f"{original_program.title} (Copy)"  # Modify the title
+        new_program.marketing_slug =  f"{original_program.marketing_slug}-(Copy)"
+        # Save the new program
+        new_program.save()
+
+        # Copy ManyToMany fields
+        for m2m_field in ['courses', 'excluded_course_runs', 'authoring_organizations', 'expected_learning_items', 'faq',
+                          'instructor_ordering', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
+                          'individual_endorsements', 'categories']:
+            m2m_data = getattr(original_program, m2m_field).all()
+            getattr(new_program, m2m_field).set(m2m_data)
+
+        # Redirect to the edit page of the new program
+        return redirect(f'/admin/your_app_name/program/{new_program.id}/change/')
+
+    def duplicate_button(self, obj):
+        return format_html('<a class="button" href="{}">Duplicate</a>', f'{obj.id}/duplicate/')
+    duplicate_button.short_description = 'Actions'
+    duplicate_button.allow_tags = True
+
+    # def duplicate_program(self, request, queryset):
+    #     for program in queryset:
+    #         new_program = program
+    #         new_program.pk = None
+    #         new_program.uuid = uuid4()
+    #         new_program.title = f"{program.title} (Copy)"
+    #         new_program.marketing_slug =  f"{program.marketing_slug}-(Copy)"
+    #         new_program.save()
+
+    #     self.message_user(request, "Selected programs were duplicated successfully.")
+
+    # duplicate_program.short_description = "Duplicate selected programs"
 
     def _redirect_course_run_update_page(self, obj):
         """ Returns a response redirect to a page where the user can update the
