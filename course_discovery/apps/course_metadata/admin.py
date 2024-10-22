@@ -2,10 +2,10 @@ from adminsortable2.admin import SortableAdminMixin
 from dal import autocomplete
 from uuid import uuid4
 from copy import deepcopy
-from django.shortcuts import get_object_or_404, redirect
 from django.urls import path
 from django.contrib import admin, messages
 from django.db.utils import IntegrityError
+from django.shortcuts import get_object_or_404, redirect
 from django.forms import CheckboxSelectMultiple, ModelForm
 from django.http import HttpResponseRedirect
 from django.urls import re_path, reverse
@@ -361,24 +361,31 @@ class ProgramAdmin(admin.ModelAdmin):
         # Get the original program
         original_program = get_object_or_404(Program, pk=program_id)
         
-        # Duplicate the program
-        new_program = deepcopy(original_program)  # Create a deep copy
-        new_program.pk = None  # Reset primary key to create a new object
-        new_program.uuid = uuid4()  # Assign a new UUID
-        new_program.title = f"{original_program.title} (Copy)"  # Modify the title
-        new_program.marketing_slug =  f"{original_program.marketing_slug}-(Copy)"
-        # Save the new program
-        new_program.save()
-
-        # Copy ManyToMany fields
-        for m2m_field in ['courses', 'excluded_course_runs', 'authoring_organizations', 'expected_learning_items', 'faq',
-                          'instructor_ordering', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
-                          'individual_endorsements', 'categories']:
-            m2m_data = getattr(original_program, m2m_field).all()
-            getattr(new_program, m2m_field).set(m2m_data)
+        try:
+            # Duplicate the program
+            new_program = deepcopy(original_program)  # Create a deep copy
+            new_program.pk = None  # Reset primary key to create a new object
+            new_program.uuid = uuid4()  # Assign a new UUID
+            new_program.title = f"{original_program.title} (Copy)"  # Modify the title
+            new_program.marketing_slug = f"{original_program.marketing_slug}-(Copy)"  # Modify marketing_slug
+            # Save the new program
+            new_program.save()
+            # Copy ManyToMany fields
+            for m2m_field in ['courses', 'excluded_course_runs', 'authoring_organizations', 'expected_learning_items', 'faq',
+                              'instructor_ordering', 'credit_backing_organizations', 'corporate_endorsements', 'job_outlook_items',
+                              'individual_endorsements', 'categories']:
+                m2m_data = getattr(original_program, m2m_field).all()
+                getattr(new_program, m2m_field).set(m2m_data)
+            # Add a success message
+            messages.success(request, f'"{new_program.title}" was duplicated successfully.')
+        except IntegrityError:
+            # Handle exception for unique fields
+            messages.error(request, 'Error: A program with the same UUID or marketing slug already exists.')
+            return redirect(f'/admin/course_metadata/program/{program_id}/change/')
 
         # Redirect to the edit page of the new program
         return redirect(f'/admin/course_metadata/program/{new_program.id}/change/')
+
 
     def duplicate_button(self, obj):
         return format_html('<a class="button" href="{}">Duplicate</a>', f'{obj.id}/duplicate/')
