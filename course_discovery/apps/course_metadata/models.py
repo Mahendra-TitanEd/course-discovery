@@ -2371,11 +2371,11 @@ class Program(PkSearchableMixin, TimeStampedModel):
     seo_title = models.CharField(verbose_name="Programme SEO Title", max_length=2056, null=True, blank=True)
     additional_campaign_info = models.TextField(verbose_name="Additional Campaign information", null=True, blank=True, help_text="Enter the HTML code(like buttons, links) to be displayed on the program about page below start date, price, instutiton etc information")
     content_activation_window = models.CharField(
+        verbose_name="Programme Access Duration Text",
         max_length=1024,
         blank=True,
         null=True,
-        verbose_name="Content Activation Window",
-        help_text="Define the content access period (e.g., '3-Year Access').",
+        help_text="Enter the programme access period (e.g., '3-Year Access'). This will be displayed on the program about page after start date, price, instutiton etc information",
     )
     objects = ProgramQuerySet.as_manager()
 
