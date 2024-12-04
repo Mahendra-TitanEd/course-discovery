@@ -17,6 +17,7 @@ from django.db.models import F, Q
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django_elasticsearch_dsl.registries import registry
+from django.utils.text import Truncator
 from django_extensions.db.fields import AutoSlugField
 from django_extensions.db.models import TimeStampedModel
 from elasticsearch.exceptions import RequestError
@@ -2159,7 +2160,7 @@ class Endorsement(TimeStampedModel):
     quote = models.TextField(blank=False, null=False)
 
     def __str__(self):
-        return self.endorser.full_name
+        return "{}-{}".format(self.endorser.full_name, Truncator(self.quote).chars(100))
 
 
 class CorporateEndorsement(TimeStampedModel):

@@ -481,7 +481,7 @@ class SeatTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Endorsement)
 class EndorsementAdmin(admin.ModelAdmin):
-    list_display = ('endorser',)
+    list_display = ('endorser', 'quote')
 
 
 @admin.register(CorporateEndorsement)
