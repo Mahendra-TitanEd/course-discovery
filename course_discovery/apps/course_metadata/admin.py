@@ -320,7 +320,7 @@ class ProgramAdmin(admin.ModelAdmin):
         'categories', 'topic', 'level', 'language', 'start_date', 'end_date', 'enrollment_start', 'enrollment_end', 'enrollment_btn_title', 'upgrade_deadline',
         'overview_2', 'ebooks_overview', 'certificte_overview','placement_overview', 'additional_campaign_info', 'is_new', 'price', 
         'price_text', 'offer_text', 'tax_info', 'product_id', 'purchase_url', 'campaign_code', 'instructor_ordering_title', 'instructor_ordering',
-        'is_upcoming', 'in_subscription', 'advertised_start', 'enrollment_info',  'access_duration', 'content_activation_window', 'video_block_title',
+        'is_upcoming', 'in_subscription', 'advertised_start', 'enrollment_info', 'preview_button', 'access_duration', 'content_activation_window', 'video_block_title',
     )
 
     save_error = False
