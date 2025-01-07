@@ -2355,7 +2355,8 @@ class Program(PkSearchableMixin, TimeStampedModel):
     in_subscription = models.BooleanField("Include programme in subscription?", default=False)
     advertised_start = models.CharField(verbose_name="Programme Advertised Start", max_length=1024, null=True, blank=True, help_text="Enter information to be displayed insted of start date on the program about page")
     enrollment_info = models.CharField(verbose_name="Enrollment Information", max_length=1024, null=True, blank=True, help_text="Enter information to be displayed on top of enrollment button on the  program about page")
-    preview_button = models.TextField(verbose_name="Preview Button", max_length=1024, null=True, blank=True, help_text="Enter HTML content to be displayed below program title and subtitle on the  program about page")
+    preview_button_1 = models.TextField(verbose_name="Preview Button 1", max_length=1024, null=True, blank=True, help_text="Enter HTML content to be displayed below program title and subtitle on the program about page")
+    preview_button_2 = models.TextField(verbose_name="Preview Button 2", max_length=1024, null=True, blank=True, help_text="Enter HTML content to be displayed below program title and subtitle on the program about page")
     enrollment_btn_title = models.CharField(
         max_length=255,
         verbose_name="Enrollment Button Title",
