@@ -453,6 +453,7 @@ class MinimalPersonSerializer(BaseModelSerializer):
             PersonSocialNetwork.FACEBOOK: self.get_social_network_url(PersonSocialNetwork.FACEBOOK, obj),
             PersonSocialNetwork.TWITTER: self.get_social_network_url(PersonSocialNetwork.TWITTER, obj),
             PersonSocialNetwork.BLOG: self.get_social_network_url(PersonSocialNetwork.BLOG, obj),
+            PersonSocialNetwork.LINKEDIN: self.get_social_network_url(PersonSocialNetwork.LINKEDIN, obj),
         }
 
     def get_urls_detailed(self, obj):
