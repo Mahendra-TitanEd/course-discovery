@@ -604,7 +604,7 @@ class TopicAdmin(TranslatableAdmin):
 
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
-    #inlines = (PositionInline, PersonSocialNetworkInline, PersonAreaOfExpertiseInline)
+    inlines = (PersonSocialNetworkInline)
     list_display = ('salutation', 'given_name', 'designation', 'email')
     readonly_fields = ('uuid',)
     search_fields = ('uuid', 'given_name', 'slug',)
