@@ -3118,12 +3118,14 @@ class PersonSocialNetwork(TimeStampedModel):
     TWITTER = 'twitter'
     BLOG = 'blog'
     OTHERS = 'others'
+    LINKEDIN = 'linkedin'
 
     SOCIAL_NETWORK_CHOICES = {
         FACEBOOK: _('Facebook'),
         TWITTER: _('Twitter'),
         BLOG: _('Blog'),
         OTHERS: _('Others'),
+        LINKEDIN: _('LinkedIn'),
     }
 
     type = models.CharField(max_length=15, choices=sorted(list(SOCIAL_NETWORK_CHOICES.items())), db_index=True)
